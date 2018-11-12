@@ -1,0 +1,1 @@
+docker run --rm -it -p 8000:80 -v D:\Code\Test\ShortUrl:/app/ -w /app microsoft/dotnet:2.1-sdk dotnet watch run
