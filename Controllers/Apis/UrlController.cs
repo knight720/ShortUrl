@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ShortUrl.Service;
 
 namespace ShortUrl.Controllers.Apis
 {
@@ -11,6 +12,13 @@ namespace ShortUrl.Controllers.Apis
     [ApiController]
     public class UrlController : ControllerBase
     {
+        private IUrlService _urlService;
+
+        public UrlController(IUrlService urlService)
+        {
+            this._urlService = urlService;
+        }
+
         // GET: api/Url
         [HttpGet]
         public IEnumerable<string> Get()
@@ -19,16 +27,17 @@ namespace ShortUrl.Controllers.Apis
         }
 
         // GET: api/Url/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{code}", Name = "Get")]
+        public string Get(string code)
         {
-            return "value";
+            return this._urlService.getUrl(code);
         }
 
         // POST: api/Url
         [HttpPost]
-        public void Post([FromBody] string value)
+        public string Post([FromBody] string value)
         {
+            return this._urlService.getShort(value);
         }
 
         // PUT: api/Url/5

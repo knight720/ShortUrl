@@ -1,9 +1,11 @@
-### GET
-GET http://localhost:51483/api/Url
-Content-Type: application/json
+@host = localhost:51483
 
 ### POST
-POST http://localhost:51483/api/Url
+POST http://{{host}}/api/Url
 Content-Type: application/json
 
-{"id":"http://www.google.com"}
+"http://www.google.com"
+
+### GET
+@code = 14841450
+GET http://{{host}}/api/Url/{{code}}
