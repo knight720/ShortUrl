@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
 
-namespace ShortUrl.Service
+namespace ShortUrl.Services
 {
     public class MemoryUrlService : IUrlService
     {
