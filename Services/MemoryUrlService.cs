@@ -7,6 +7,13 @@ namespace ShortUrl.Services
         private static Dictionary<string, string> _urlDictionary = new Dictionary<string, string>();
         private static Dictionary<string, string> _codeDictionary = new Dictionary<string, string>();
 
+        private IEncodeService _encodeService;
+
+        public MemoryUrlService(IEncodeService encode)
+        {
+            this._encodeService = encode;
+        }
+
         public string getShort(string url)
         {
             string code = string.Empty;
@@ -17,7 +24,7 @@ namespace ShortUrl.Services
             }
             else
             {
-                code = url.GetHashCode().ToString();
+                code = this._encodeService.Encode(url);
                 MemoryUrlService._urlDictionary.Add(url, code);
                 MemoryUrlService._codeDictionary.Add(code, url);
             }

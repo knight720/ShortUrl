@@ -30,6 +30,7 @@ namespace ShortUrl
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddSingleton<IUrlService, MemoryUrlService>();
+            services.AddSingleton<IEncodeService, EncodeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
