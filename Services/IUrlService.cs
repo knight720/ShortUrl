@@ -2,8 +2,8 @@
 {
     public interface IUrlService
     {
-        string getShort(string url);
+        string GetShort(string url);
 
-        string getUrl(string code);
+        string GetUrl(string code);
     }
 }

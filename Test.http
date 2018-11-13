@@ -7,5 +7,9 @@ Content-Type: application/json
 "http://www.google.com"
 
 ### GET
-@code = 14841450
+@code = 161701943
 GET http://{{host}}/api/Url/{{code}}
+
+###
+
+GET http://{{host}}/test/encode?url=http://awww.google.com

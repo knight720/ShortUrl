@@ -4,9 +4,35 @@
 }
 
 Url
-<input type="text" id="inputUrl">
-<input type="button" id="btnSubmit">
+<input type="text" id="inputUrl" value="abc">
+<input type="button" id="btnSubmit" onclick="callApi()">
 <p />
-<div id="outputUrl">Result</div>
+<div id="outputUrl">@Model</div>
 
+@section Scripts {
+    <script>
+        //var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+        var url = '../api/url';
 
+        function callApi() {
+            var request = new XMLHttpRequest();
+            request.open('POST', url, true);
+            //request.setRequestHeader('Content-type', 'application/json');
+            request.onload = function () {
+                console.log(this.status);
+
+                var data = JSON.parse(this.responseText);
+                console.log(data);
+
+                if (request.status >= 200 && request.status < 400) {
+                    console.log(date);
+                } else {
+                    console.log('error');
+                }
+            };
+
+            let params = document.getElementById('inputUrl').value;
+            request.send(params);
+        }
+    </script>
+}

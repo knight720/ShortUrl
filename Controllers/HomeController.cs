@@ -5,11 +5,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ShortUrl.Models;
+using ShortUrl.Services;
 
 namespace ShortUrl.Controllers
 {
     public class HomeController : Controller
     {
+        private IUrlService _urlService;
+
+        public HomeController(IUrlService urlService)
+        {
+            this._urlService = urlService;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -43,6 +51,13 @@ namespace ShortUrl.Controllers
         public IActionResult Url()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Url(string url)
+        {
+            var code = this._urlService.GetShort(url);
+            return View(code);
         }
     }
 }

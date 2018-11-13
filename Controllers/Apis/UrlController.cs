@@ -26,14 +26,14 @@ namespace ShortUrl.Controllers.Apis
         [HttpGet("{code}", Name = "Get")]
         public string Get(string code)
         {
-            return this._urlService.getUrl(code);
+            return this._urlService.GetUrl(code);
         }
 
         // POST: api/Url
         [HttpPost]
         public string Post([FromBody] string value)
         {
-            return this._urlService.getShort(value);
+            return this._urlService.GetShort(value);
         }
 
         // PUT: api/Url/5

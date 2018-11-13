@@ -14,7 +14,7 @@ namespace ShortUrl.Services
             this._encodeService = encode;
         }
 
-        public string getShort(string url)
+        public string GetShort(string url)
         {
             string code = string.Empty;
 
@@ -32,7 +32,7 @@ namespace ShortUrl.Services
             return code;
         }
 
-        public string getUrl(string code)
+        public string GetUrl(string code)
         {
             string url = string.Empty;
 
