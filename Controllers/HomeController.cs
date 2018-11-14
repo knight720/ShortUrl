@@ -48,16 +48,17 @@ namespace ShortUrl.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        [Route("")]
         public IActionResult Url()
         {
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Url(string url)
+        [Route("/{code}")]
+        public IActionResult RedirectUrl(string code)
         {
-            var code = this._urlService.GetShort(url);
-            return View(code);
+            var url = this._urlService.GetUrl(code);
+            return Redirect(url);
         }
     }
 }
