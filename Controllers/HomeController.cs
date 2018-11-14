@@ -58,6 +58,10 @@ namespace ShortUrl.Controllers
         public IActionResult RedirectUrl(string code)
         {
             var url = this._urlService.GetUrl(code);
+            if (string.IsNullOrEmpty(url))
+            {
+                return RedirectToAction("Url");
+            }
             return Redirect(url);
         }
     }

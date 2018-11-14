@@ -3,11 +3,17 @@
     ViewData["Title"] = "ShortUrl";
 }
 
-Url
-<input type="text" id="inputUrl" value="http://www.google.com" placeholder="Input Url">
-<input type="button" id="btnSubmit" onclick="generateCode()"  value="Submit">
-<p />
-<div id="outputUrl">@Model</div>
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Url</span>
+    </div>
+    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="inputUrl" placeholder="Input url here!">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2" id="btnSubmit" onclick="generateCode()">Submit</button>
+    </div>
+</div>
+
+<p class="text-center" id="outputUrl"></p>
 
 @section Scripts {
     <script>
