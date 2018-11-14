@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using ShortUrl.Entitys;
 using ShortUrl.Services;
 
 namespace ShortUrl.Controllers.Apis
@@ -31,9 +32,9 @@ namespace ShortUrl.Controllers.Apis
 
         // POST: api/Url
         [HttpPost]
-        public string Post([FromBody] string value)
+        public string Post([FromBody] UrlClass value)
         {
-            return this._urlService.GetShort(value);
+            return this._urlService.GetShort(value.Url);
         }
 
         // PUT: api/Url/5

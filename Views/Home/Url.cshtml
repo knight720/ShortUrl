@@ -4,8 +4,8 @@
 }
 
 Url
-<input type="text" id="inputUrl" value="abc">
-<input type="button" id="btnSubmit" onclick="callApi()">
+<input type="text" id="inputUrl" value="http://www.google.com" placeholder="Input Url">
+<input type="button" id="btnSubmit" onclick="generateCode()"  value="Submit">
 <p />
 <div id="outputUrl">@Model</div>
 
@@ -14,25 +14,28 @@ Url
         //var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
         var url = '../api/url';
 
-        function callApi() {
+        function generateCode() {
             var request = new XMLHttpRequest();
             request.open('POST', url, true);
-            //request.setRequestHeader('Content-type', 'application/json');
+            request.setRequestHeader('Content-type', 'application/json');
             request.onload = function () {
                 console.log(this.status);
-
-                var data = JSON.parse(this.responseText);
-                console.log(data);
-
                 if (request.status >= 200 && request.status < 400) {
-                    console.log(date);
+                    console.log(this.responseText);
+                    showResult(this.responseText);
                 } else {
                     console.log('error');
                 }
             };
 
             let params = document.getElementById('inputUrl').value;
-            request.send(params);
+            request.send(JSON.stringify({ Url: params }));
+        }
+
+        function showResult(result) {
+            let dom = document.getElementById('outputUrl');
+            let message = '<a href="../' + result + '">' + result + '</a>';
+            dom.innerHTML = message;
         }
     </script>
 }
