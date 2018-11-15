@@ -10,11 +10,13 @@
     </div>
 </div>
 
-<p class="text-center" id="outputUrl"></p>
+<div class="text-center">
+    <span class="text-center" id="outputUrl"></span>
+    <button type="button" class="btn btn-outline-success invisible pull-right" id="btnCopy">Copy</button>
+</div>
 
 @section Scripts {
     <script>
-        //var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
         var url = '../api/url';
 
         function generateCode() {
@@ -35,11 +37,14 @@
             request.send(JSON.stringify({ Url: params }));
         }
 
+        let btnCopy = document.getElementById('btnCopy');
         function showResult(result) {
             let dom = document.getElementById('outputUrl');
             let url = window.location.href + result;
             let message = '<a href="' + url + '">' + url + '</a>';
             dom.innerHTML = message;
+            btnCopy.classList.toggle("visible");
+            btnCopy.classList.toggle("invisible");
         }
 
         let doms = document.getElementsByClassName('container');
@@ -49,5 +54,19 @@
                 generateCode()
             }
         });
+
+        function myFunction() {
+            /* Get the text field */
+            //let dom = document.getElementById('outputUrl');
+
+            /* Select the text field */
+            //dom.select();
+
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+
+            /* Alert the copied text */
+            //alert("Copied the text: " + dom.value);
+        }
     </script>
 }
