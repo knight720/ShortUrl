@@ -9,7 +9,7 @@ Content-Type: application/json
 }
 
 ### GET
-@code = 161701943
+@code = SRWHXRD
 GET http://{{host}}/api/Url/{{code}}
 
 ###
