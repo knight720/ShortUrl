@@ -9,3 +9,14 @@ body {
 .container {
     margin: auto;
 }
+
+.bg {
+    /* The image used */
+    background-image: url('https://loremflickr.com/1280/720/road');
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

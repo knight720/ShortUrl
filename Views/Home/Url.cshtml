@@ -12,14 +12,14 @@
 
 <div class="text-center">
     <span class="text-center" id="outputUrl"></span>
-    <button type="button" class="btn btn-outline-success invisible pull-right" id="btnCopy">Copy</button>
+    <button type="button" class="btn btn-outline-success invisible" id="btnCopy" onclick="copyUrl()">Copy</button>
 </div>
 
 @section Scripts {
     <script>
-        var url = '../api/url';
-
         function generateCode() {
+            let url = window.location.href + 'api/url';
+
             var request = new XMLHttpRequest();
             request.open('POST', url, true);
             request.setRequestHeader('Content-type', 'application/json');
@@ -36,37 +36,37 @@
             let params = document.getElementById('inputUrl').value;
             request.send(JSON.stringify({ Url: params }));
         }
-
-        let btnCopy = document.getElementById('btnCopy');
+        
         function showResult(result) {
             let dom = document.getElementById('outputUrl');
             let url = window.location.href + result;
             let message = '<a href="' + url + '">' + url + '</a>';
             dom.innerHTML = message;
-            btnCopy.classList.toggle("visible");
-            btnCopy.classList.toggle("invisible");
+            showCopy();
         }
 
-        let doms = document.getElementsByClassName('container');
-        let dom = doms[0];
+        function showCopy() {
+            let btnCopy = document.getElementById('btnCopy');
+            if (btnCopy.classList.contains('invisible')) {
+                btnCopy.classList.toggle("invisible");
+            }
+        }
+
+        var dom = document.getElementsByClassName('container')[0];
         dom.addEventListener('keypress', (e) => {
             if (e.which == 13) {
                 generateCode()
             }
         });
 
-        function myFunction() {
-            /* Get the text field */
-            //let dom = document.getElementById('outputUrl');
-
-            /* Select the text field */
-            //dom.select();
-
-            /* Copy the text inside the text field */
+        function copyUrl() {
+            let url = document.getElementById('outputUrl');
+            let textArea = document.createElement("textarea");
+            textArea.value = url.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
             document.execCommand("copy");
-
-            /* Alert the copied text */
-            //alert("Copied the text: " + dom.value);
+            textArea.remove();
         }
     </script>
 }
