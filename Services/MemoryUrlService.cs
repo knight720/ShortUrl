@@ -4,7 +4,6 @@ namespace ShortUrl.Services
 {
     public class MemoryUrlService : IUrlService
     {
-        private static Dictionary<string, string> _urlDictionary = new Dictionary<string, string>();
         private static Dictionary<string, string> _codeDictionary = new Dictionary<string, string>();
 
         private IEncodeService _encodeService;
@@ -16,16 +15,10 @@ namespace ShortUrl.Services
 
         public string GetShort(string url)
         {
-            string code = string.Empty;
+            var code = this._encodeService.Encode(url);
 
-            if (MemoryUrlService._urlDictionary.ContainsKey(url))
+            if (MemoryUrlService._codeDictionary.ContainsKey(code) == false)
             {
-                code = MemoryUrlService._urlDictionary[url];
-            }
-            else
-            {
-                code = this._encodeService.Encode(url);
-                MemoryUrlService._urlDictionary.Add(url, code);
                 MemoryUrlService._codeDictionary.Add(code, url);
             }
 
