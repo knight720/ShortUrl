@@ -6,8 +6,18 @@
 # Enviornment
 
 * Database  
-docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=yourStrong(!)Password' -e 'MSSQL_PID=Express' -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest
-docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=P@ssw0rd' -e 'MSSQL_PID=Express' -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest
+docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=?' -e 'MSSQL_PID=Express' -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest
+
+** Code First  
+*** PowerShell  
+Add-Migration InitialCreate  
+Update-Database  
+*** CLI  
+dotnet ef migrations add InitialCreate  
+dotnet ef database update  
+
+** Database First  
+Scaffold-DbContext "Server=localhost;atabase=UrlDB;User ID=?;Password=?;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models  
 
 # Reference
 [Develop .NET Core Apps in a Container](https://hub.docker.com/r/microsoft/dotnet/)
