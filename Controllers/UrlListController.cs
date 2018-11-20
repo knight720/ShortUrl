@@ -9,11 +9,11 @@ using ShortUrl.Models;
 
 namespace ShortUrl.Controllers
 {
-    public class UrlsController : Controller
+    public class UrlListController : Controller
     {
         private readonly UrlDBContext _context;
 
-        public UrlsController(UrlDBContext context)
+        public UrlListController(UrlDBContext context)
         {
             _context = context;
         }
